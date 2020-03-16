@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+  <div fxHide.gt-xs>
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <!-- <a routerLink="/">Logo</a> -->
+  <div>
+    <img
+      src="./assets/images/siteLogo.png"
+      (click)="myfun()"
+      style="cursor: pointer; width: 60px;
+    height: 50px;
+    margin-top: 9px;"
+    />
+  </div>
+
+  <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+    <ul
+      fxLayout
+      fxLayoutGap="10px"
+      class="navigation-items"
+      style="list-style-type:none;"
+    >
+      <li><a routerLink="/signup">Signup</a></li>
+      <li><a routerLink="/login">Login</a></li>
+    </ul>
+  </div>
+</mat-toolbar>

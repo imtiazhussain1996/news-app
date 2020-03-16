@@ -1,0 +1,151 @@
+<section>
+  <form
+    #registerForm="ngForm"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="30px"
+    (submit)="onSubmit(registerForm)"
+  >
+    <H2>Please Register</H2>
+    <mat-form-field appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input
+        type="text"
+        name="firstname"
+        #firstName="ngModel"
+        [(ngModel)]="registerValues.firstName"
+        matInput
+        [ngClass]="{
+          'is-invalid': firstName.errors && firstName.touched
+        }"
+        required
+      />
+      <mat-hint>Please Enter Your FirstName.</mat-hint>
+      <mat-error *ngIf="firstName.errors?.required"
+        >First Name is a required field.</mat-error
+      >
+    </mat-form-field>
+    {{ registerValues.firstName }}
+
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input
+        type="text"
+        name="lastname"
+        #lastName="ngModel"
+        [(ngModel)]="registerValues.lastName"
+        matInput
+        [ngClass]="{
+          'is-invalid': lastName.errors && lastName.touched
+        }"
+        required
+      />
+      <mat-hint>Please Enter Your LastName.</mat-hint>
+      <mat-error *ngIf="lastName.errors?.required"
+        >Last Name is a required field.</mat-error
+      >
+    </mat-form-field>
+    {{ registerValues.lastName }}
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email Address</mat-label>
+      <input
+        type="email"
+        name="email"
+        #clientEmail="ngModel"
+        [(ngModel)]="registerValues.email"
+        matInput
+        [ngClass]="{
+          'is-invalid': clientEmail.errors && clientEmail.touched
+        }"
+        pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+        minlength="6"
+        required
+      />
+      <mat-hint>Please enter your email.</mat-hint>
+      <mat-error *ngIf="clientEmail.errors?.required"
+        >Email is a required field.</mat-error
+      >
+      <mat-error *ngIf="clientEmail.errors?.pattern"
+        >Email is invalid.</mat-error
+      >
+      <mat-error *ngIf="clientEmail.errors?.minlength"
+        >Email length too short.</mat-error
+      >
+    </mat-form-field>
+    {{ registerValues.email }}
+
+    <mat-form-field appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input
+        type="text"
+        name="phone"
+        #clientPhone="ngModel"
+        [(ngModel)]="registerValues.phone"
+        matInput
+        [ngClass]="{
+          'is-invalid': clientPhone.errors && clientPhone.touched
+        }"
+        pattern="^((\\+91-?)|0)?[0-9]{10}$"
+        required
+      />
+      <mat-hint>Please enter your phone.</mat-hint>
+      <mat-error *ngIf="clientPhone.errors?.required"
+        >Phone is a required field.</mat-error
+      >
+      <mat-error *ngIf="clientPhone.errors?.pattern"
+        >Phone is invalid.</mat-error
+      >
+    </mat-form-field>
+    {{ registerValues.phone }}
+
+    <mat-form-field appearance="outline">
+      <mat-label>Date Of Birth</mat-label>
+      <input
+        type="text"
+        name="dob"
+        [matDatepicker]="picker"
+        #picker="ngModel"
+        [(ngModel)]="registerValues.dateOfBirth"
+        matInput
+        required
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-hint>Please Enter Your Date Of Birth.</mat-hint>
+    </mat-form-field>
+    {{ registerValues.dateOfBirth }}
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        type="password"
+        name="password"
+        #clientPassword="ngModel"
+        [(ngModel)]="registerValues.password"
+        matInput
+        [ngClass]="{
+          'is-invalid': clientPassword.errors && clientPassword.touched
+        }"
+        minlength="5"
+        required
+      />
+      <mat-hint>Please enter your password.</mat-hint>
+      <mat-error *ngIf="clientPassword.errors?.required"
+        >Password is a required field.</mat-error
+      >
+      <mat-error *ngIf="clientPassword.errors?.minlength"
+        >Password length too short.</mat-error
+      >
+    </mat-form-field>
+    {{ registerValues.password }}
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="registerForm.invalid"
+    >
+      Register
+    </button>
+  </form>
+</section>

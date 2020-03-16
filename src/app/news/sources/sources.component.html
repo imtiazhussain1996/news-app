@@ -1,0 +1,55 @@
+<div
+  fxLayout="row wrap"
+  fxLayout.xs="column"
+  fxLayoutAlign="center center"
+  fxLayoutGap="10px"
+>
+  <mat-form-field>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="SearchBar"
+      #text="ngModel"
+      style="background-color: aliceblue;"
+    />
+    <mat-label>Search Source</mat-label>
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</div>
+<div
+  fxLayout="row wrap"
+  fxLayout.xs="column"
+  fxLayoutAlign="center center"
+  fxLayoutGap="10px"
+>
+  <mat-card
+    *ngFor="let source of sources | filter: 'name':SearchBar"
+    fxFlex.lg="0 1 calc(20%-10px)"
+    fxFlex.md="0 1 calc(25%-10px)"
+    fxFlex.sm="0 1 calc(35%-10px)"
+    fxFlex.xs="0 1 calc(50%-10px)"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    class="mat-card"
+  >
+    <mat-card-header>
+      <img
+        mat-card-avatar
+        src="../assets/logo/{{ source.id }}{{ extension }}"
+      />
+
+      <mat-card-title>{{ source.name }}</mat-card-title>
+      <mat-card-subtitle>{{ source.category }}</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      class="img"
+      mat-card-image
+      src="../assets/logo/{{ source.id }}{{ extension }}"
+    />
+    <mat-card-content>
+      <p>
+        {{ source.description }}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
